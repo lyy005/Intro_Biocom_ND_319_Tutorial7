@@ -1,6 +1,5 @@
 import pandas
 from plotnine import *
-football=pandas.read_csv("NFL-graph-for-class.csv", sep='\t',header=0)
+football=pandas.read_csv("NFL-graph-for-class.txt", sep='\t',header=0)
 football.shape
-a=ggplot(football,aes(x="Year",y="Pats-Wins-Tot"))
-b=ggplot(football,aes(x="Year",y="Lions-Wins-Tot"))
+(ggplot(football) + aes('Pats-Win-Tot','Lions-Win-Tot') + geom_point() + geom_smooth(method='lm'))
