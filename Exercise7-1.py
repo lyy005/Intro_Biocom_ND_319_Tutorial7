@@ -1,4 +1,6 @@
-import plotnine
+import numpy
+import pandas
+from plotnine import *
 Ex7=open("Lecture11.fasta", "r")
 sequenceID=[]
 sequenceLength=[]
@@ -13,6 +15,7 @@ for line in Ex7:
         C=line.count("C")
     sequenceLength.append(seqLen)
     percentGC.append((G+C)/seqLen*100)
-a=ggplot(sequenceLength, x="sequenceLength", y="len(line)")
-a+geom_histogram
-        
+b=ggplot(line,aes(x="sequenceLength"))
+b+geom_histogram()+theme_classic
+c=ggplot(line,aes(x="percentGC"))
+c+geom_histogram()+theme_xkcd
