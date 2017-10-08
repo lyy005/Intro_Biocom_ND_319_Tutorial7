@@ -15,7 +15,5 @@ for line in Ex7:
         C=line.count("C")
     sequenceLength.append(seqLen)
     percentGC.append((G+C)/seqLen*100)
-b=ggplot(line,aes(x="sequenceLength"))
+b=ggplot(line,aes(x="seqID"))
 b+geom_histogram()+theme_classic
-c=ggplot(line,aes(x="percentGC"))
-c+geom_histogram()+theme_xkcd
