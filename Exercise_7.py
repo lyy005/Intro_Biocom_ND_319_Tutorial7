@@ -1,5 +1,5 @@
 # Question 1
-# I am not a big fan of plotnine, so I used the matplotlib and seaborn, which I think is a little bit more popular. 
+# I am not a big fan of plotnine, so I used the matplotlib and seaborn, which I think are a little bit more popular. 
 import pandas as pd
 import matplotlib.pyplot as plt
 data=pd.read_table('/Users/chenyingying/Documents/Intro_Biocom_ND_319_Tutorial7/Lecture11.fasta',header=None)
@@ -40,4 +40,4 @@ f2=sns.pairplot(x_vars=["Index"], y_vars=["observations"], data=data_3, hue="reg
 f2.set(xticks=[0,1,2,3])
 f2.set(xticklabels=['east','north','south','west'])
 f2.set(xlabel='region')
-f2.set(tittle='Scatter plot')
+f2.set(title='Scatter plot')
