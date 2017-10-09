@@ -3,6 +3,7 @@
 #load dataset
 import pandas
 InFile=open("Lecture11.fasta","r")
+InFile=close()
 #create lists for storing information about sequences
 sequenceID=[]
 sequenceLength=[]
@@ -12,29 +13,32 @@ meltingTemp=[]
 for Line in InFile:
 # remove newline character from file line
     Line=Line.strip()
+    print (Line)
     if '>' in Line:
         sequenceID.append(Line[1:])
     else:
-        seqLen=float(len(Line))
+        Seqlength = float(len(Line))
+        print (Seqlength)
+        sequenceLength.append(Seqlength)
         # count the number of G's and C's
         nG=Line.count("G")
+        print (nG)
         nC=Line.count("C")
-# if the sequence is 14 or fewer bases calculate melting temperature
-        if seqLen<=14:
-            Tm=2*(nG+nC)+2*seqLen
-        else:
-            Tm=-9999
+        print (nC)
 #append values to list
-sequenceLength.append(seqLen)
-percentGC.append((nG+nC)/seqLen*100)
-meltingTemp.append(Tm)
+        gcTotal = (nG+nC)/Seqlength*100
+        percentGC.append(gcTotal)
+
+#dataframe of resulting info
+seqDF = pandas.DataFrame(list(zip(sequenceID,sequenceLength,percentGC)),columns=['sequenceID','sequenceLength','percentGC'])
+InFile.close()
 
 #Histogram of sequence lengths
 import plotnine
 from plotnine import *
-p=(ggplot(data=None) +
-    aes(x="sequenceID",y="seqLen") +
-    geom_histogram(binwidth=2))
+p=(ggplot(data=seqDF) +
+    aes(x="sequenceLength") +
+    geom_histogram(binwidth=5))
 
 #Question 2
 
@@ -42,18 +46,11 @@ p=(ggplot(data=None) +
 #Question 3
 #load the dataset
 import pandas
-Data = pandas.read_csv("data.txt", sep='\t', lineterminator='\r')
+import numpy
+Data = pandas.read_csv("data.txt", sep=',')
+print (Data)
 #create lists for storing information about sequences
-North=[]
-East=[]
-South=[]
-West=[]
-for Pop in Data:
-    if Data.region[Pop]=="north":
-        North.append(line[1:])
-    elif Data.region[Pop]=="east":
-        East.append(line[1:])
-    elif Data.region[Pop]=="south":
-        South.append(line[1:])
-    else:
-        West.append(line[1:])
+import plotnine
+from plotnine import *
+d=ggplot(Data)+theme_classic()+xlab("region")+ylab("Average")
+d+geom_bar(aes(x="factor(region)",y="observations"),stat="summary",fun_y=numpy.mean)
