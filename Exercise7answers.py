@@ -33,6 +33,12 @@ seqDF = pandas.DataFrame(list(zip(sequenceID,sequenceLength,percentGC)),columns=
 from plotnine import *
 # histogram of sequence length
 histogram1=ggplot(seqDF,aes(x="sequenceLength"))
-histogram1+geom_histogram()+theme_classic()
+histogram1+geom_histogram(binwidth=20,fill='blue',color='black')+theme_classic()
+
+# histogram of percentGC
+histogram2=ggplot(seqDF,aes(x="percentGC"))
+histogram2+geom_histogram()+theme_classic()
+# changing colors and bins
+histogram2+geom_histogram(binwidth=15,fill='yellow',color='black')+theme_classic()
 
 
