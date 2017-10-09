@@ -1,0 +1,59 @@
+####Exercise7####
+#Question 1
+#load dataset
+import pandas
+InFile=open("Lecture11.fasta","r")
+#create lists for storing information about sequences
+sequenceID=[]
+sequenceLength=[]
+percentGC=[]
+meltingTemp=[]
+
+for Line in InFile:
+# remove newline character from file line
+    Line=Line.strip()
+    if '>' in Line:
+        sequenceID.append(Line[1:])
+    else:
+        seqLen=float(len(Line))
+        # count the number of G's and C's
+        nG=Line.count("G")
+        nC=Line.count("C")
+# if the sequence is 14 or fewer bases calculate melting temperature
+        if seqLen<=14:
+            Tm=2*(nG+nC)+2*seqLen
+        else:
+            Tm=-9999
+#append values to list
+sequenceLength.append(seqLen)
+percentGC.append((nG+nC)/seqLen*100)
+meltingTemp.append(Tm)
+
+#Histogram of sequence lengths
+import plotnine
+from plotnine import *
+p=(ggplot(data=None) +
+    aes(x="sequenceID",y="seqLen") +
+    geom_histogram(binwidth=2))
+
+#Question 2
+
+
+#Question 3
+#load the dataset
+import pandas
+Data = pandas.read_csv("data.txt", sep='\t', lineterminator='\r')
+#create lists for storing information about sequences
+North=[]
+East=[]
+South=[]
+West=[]
+for Pop in Data:
+    if Data.region[Pop]=="north":
+        North.append(line[1:])
+    elif Data.region[Pop]=="east":
+        East.append(line[1:])
+    elif Data.region[Pop]=="south":
+        South.append(line[1:])
+    else:
+        West.append(line[1:])
