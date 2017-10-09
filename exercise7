@@ -9,14 +9,16 @@ sequenceID=[]
 sequenceLength=[]
 percentGC=[]
 meltingTemp=[]
-
+#for loop to sort out sequence lines and append their lengths
 for Line in InFile:
 # remove newline character from file line
     Line=Line.strip()
     print (Line)
+    # carrot lines separated from sequence lines   
     if '>' in Line:
         sequenceID.append(Line[1:])
     else:
+        # Create new seqlength dataframe and append lengths
         Seqlength = float(len(Line))
         print (Seqlength)
         sequenceLength.append(Seqlength)
@@ -25,12 +27,14 @@ for Line in InFile:
         print (nG)
         nC=Line.count("C")
         print (nC)
-#append values to list
+        # append values to list
         gcTotal = (nG+nC)/Seqlength*100
         percentGC.append(gcTotal)
 
 #dataframe of resulting info
 seqDF = pandas.DataFrame(list(zip(sequenceID,sequenceLength,percentGC)),columns=['sequenceID','sequenceLength','percentGC'])
+#to make infile management easier
+InFile=open("Lecture11.fasta","r")
 InFile.close()
 
 #Histogram of sequence lengths
@@ -38,7 +42,7 @@ import plotnine
 from plotnine import *
 p=(ggplot(data=seqDF) +
     aes(x="sequenceLength") +
-    geom_histogram(binwidth=5))
+    geom_histogram(binwidth=4))
 
 #Question 2
 
@@ -49,7 +53,8 @@ import pandas
 import numpy
 Data = pandas.read_csv("data.txt", sep=',')
 print (Data)
-#create lists for storing information about sequences
+
+#making bar graph with region as x and ave as y
 import plotnine
 from plotnine import *
 d=ggplot(Data)+theme_classic()+xlab("region")+ylab("Average")
