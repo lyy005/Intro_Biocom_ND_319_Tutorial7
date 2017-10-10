@@ -40,4 +40,5 @@ d= (ggplot(data=dat)
     + theme_classic()
     )
 print d
-
+ # why= the bar chart shows us the mean of observations from each region
+#while the scatter plot shows us the value of all  observations from each region
