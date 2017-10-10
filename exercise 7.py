@@ -24,15 +24,14 @@ from plotnine import *
 import pandas
 dat = pandas.read_csv("data.txt")
 
-print dat.head(n=5)
+#barplot  for mean observations in a region
+dat_grp= dat['observations'].groupby(dat['region']) #group observations by region
+dat_mean= dat_grp.mean() # mean of the dat grp into a list
 
-#need graph for mean
+df = pandas.DataFrame({'col':dat_mean})  #turn list into a dataframe
+print (df)
+print df[0:4]
+#only has one row....
 
-p=(ggplot(data=dat)
-   + aes( "region", "observations")
-   + geom_bar(stat = "identity")
-   + theme_classic()
-)
 
-print p
 
