@@ -38,5 +38,12 @@ InFile.close()
 b=ggplot(seqDF,aes(x="sequenceLength"))
 b+geom_histogram(binwidth=5)+theme_classic()
 
+#plots histogram of sequence length
+b=ggplot(seqDF,aes(x="percentGC"))
+b+geom_histogram(binwidth=5)+theme_classic()
+
+
+
+
 
 
