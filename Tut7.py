@@ -38,3 +38,10 @@ plt.xlabel('GC Content (%)')
 plt.ylabel('count')
 
 plt.show()
+
+plt.hist(sequenceLength, bins = 24)
+plt.title('Sequence Length distribution')
+plt.xlabel('Sequence Length')
+plt.ylabel('count')
+
+plt.show()
