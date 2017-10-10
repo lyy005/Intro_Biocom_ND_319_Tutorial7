@@ -33,6 +33,11 @@ p= (ggplot(data=grouped)
     )
 print p
 
-
-
+#scatterplot
+d= (ggplot(data=dat)
+    + aes(y='observations', x='region', fill= 'region')
+    + geom_point(alpha= .01)
+    + theme_classic()
+    )
+print d
 
