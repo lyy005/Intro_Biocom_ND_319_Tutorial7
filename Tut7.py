@@ -1,6 +1,8 @@
 import os
 from plotnine import *
 from matplotlib import pyplot as plt
+import numpy as np
+import pandas
 
 os.chdir("Intro_Biocom_ND_319_Tutorial7/")
 
@@ -48,4 +50,11 @@ plt.show()
 
 InFile.close()
 
+## Question 3 Starts Here ##
+
+data = pandas.read_csv("data.txt", sep = ",")
+
+
+plot = ggplot(data, aes(y = "observations", x = "region"))
+plot + geom_bar(stat="summary", fun_y = np.mean, fill = "green")
 
