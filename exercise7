@@ -44,6 +44,11 @@ p=(ggplot(data=seqDF) +
     aes(x="sequenceLength") +
     geom_histogram(binwidth=4))
 
+#Histogram of Percent GC
+g=(ggplot(data=seqDF) +
+    aes(x="percentGC") +
+    geom_histogram(binwidth=5))
+
 #Question 2
 
 
@@ -59,3 +64,7 @@ import plotnine
 from plotnine import *
 d=ggplot(Data)+theme_classic()+xlab("region")+ylab("Average")
 d+geom_bar(aes(x="factor(region)",y="observations"),stat="summary",fun_y=numpy.mean)
+
+#scatter plot of everything observed
+a=ggplot(Data,aes(x="region",y="observations"))
+a+geom_jitter()+coord_cartesian()
