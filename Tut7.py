@@ -1,4 +1,6 @@
 import os
+from plotnine import *
+from matplotlib import pyplot as plt
 
 os.chdir("Intro_Biocom_ND_319_Tutorial7/")
 
@@ -29,8 +31,6 @@ for Line in fasta:
     percentGC.append((nG+nC)/seqLen*100)
     meltingTemp.append(Tm)
     
-from plotnine import *
-from matplotlib import pyplot as plt
 
 plt.hist(percentGC, bins = 11)
 plt.title('Percent GC content distribution')
@@ -45,3 +45,7 @@ plt.xlabel('Sequence Length')
 plt.ylabel('count')
 
 plt.show()
+
+InFile.close()
+
+
