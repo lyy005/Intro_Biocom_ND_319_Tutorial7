@@ -18,3 +18,6 @@ data.groupby(['region'])['observations'].mean()
 scatter=ggplot('data',aes('observations','region'))
 scatter+geom_jitter(aes(color='factor(region)'))+theme_classic()+ggtitle('All Observations')
 #Scatter plot shows that although the average observations seem to be similar across the regions, the observation distributions are different.
+
+#Why?
+#Barplot shows the means for the regional observations whilst the scatterplot shows the values for the all of the observations from each region.
