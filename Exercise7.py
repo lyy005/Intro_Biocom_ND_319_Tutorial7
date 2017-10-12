@@ -28,12 +28,29 @@ b+geom_histogram()+theme_classic() #Plot as histogram
 
 InFile.close() #Close file
 
-#Part 2
+#Part 3
 import numpy
 
 data=pandas.read_csv("data.txt", header=0, sep=",") #Open file as data frame
 
-nMean=numpy.mean(data[data.region=="north"]) #Calculate mean for each direction/population
-eMean=numpy.mean(data[data.region=="east"])
-wMean=numpy.mean(data[data.region=="west"])
-sMean=numpy.mean(data[data.region=="south"])
+dataN=data[data.region=="north"] #Subset data frame & find mean for all populations
+nMean=numpy.mean(dataN.observations)
+
+dataE=data[data.region=="east"]
+eMean=numpy.mean(dataE.observations)
+
+dataW=data[data.region=="west"]
+wMean=numpy.mean(dataW.observations)
+
+dataS=data[data.region=="south"]
+sMean=numpy.mean(dataS.observations)
+
+means=pandas.DataFrame(columns=('region', 'mean')) #Combine means into new data frame
+means.region='north','south','east','west'
+means.iloc[0,1]=nMean
+means.iloc[1,1]=sMean
+means.iloc[2,1]=eMean
+means.iloc[3,1]=wMean
+
+c=ggplot(means, aes(x="region",y="mean")) #Plot means on bar graph
+c+geom_col()
