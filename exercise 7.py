@@ -41,22 +41,28 @@ plot=ggplot(data,aes(x="Heart rate",y="Running speed"))
 plot+geom_point()+coord_cartesian()+stat_smooth(method="lm")
 
 
-#question 3
-#making the plot
+#########question 3################
 from plotnine import *
+import pandas as pd
+dat = pd.read_csv("data.txt")
 
-import pandas
-dat = pandas.read_csv("data.txt")
-
-print dat.head(n=5)
-
-#need graph for mean
-
-p=(ggplot(data=dat)
-   + aes( "region", "observations")
-   + geom_bar(stat = "identity")
-   + theme_classic()
-)
-
+#barplot  for mean observations in a region
+grouped= dat.groupby(["region"]).mean().reset_index() #mean observations by region
+print grouped
+grouped.columns = ['region', 'mean_observations']
+p= (ggplot(data=grouped)
+    + aes(x='region', y= 'mean_observations',fill= 'region')
+    + geom_bar(stat = "identity")
+    + theme_classic()
+    )
 print p
 
+#scatterplot
+d= (ggplot(data=dat)
+    + aes(y='observations', x='region', fill= 'region')
+    + geom_point(alpha= .01)
+    + theme_classic()
+    )
+print d
+ # why= the bar chart shows us the mean of observations from each region
+#while the scatter plot shows us the value of all  observations from each region
