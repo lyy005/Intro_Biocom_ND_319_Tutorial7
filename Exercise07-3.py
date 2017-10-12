@@ -10,7 +10,7 @@ data=pandas.read_csv("data.txt")
 means=ggplot('data')+theme_classic()+xlab("Populations")+ylab("Mean Number of Observations")
 +means+geom_bar(aes(x="factor(region)",y="observations",fill="region"),stat="summary",fun_y=numpy.mean)+ggtitle("Population Means")
 
-#bar plot means calculated for check
+#Barplot means calculated for check
 data.groupby(['region'])['observations'].mean()
 #means are slightly different
 
