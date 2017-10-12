@@ -19,11 +19,11 @@ for line in InFile: #Loop through each line in fasta file
         sequenceLength.append(seqLen) #Append length of individual sequences to list
         percentGC.append(percGC) #Append %GC of individual sequences to list
 
-seqDF=pandas.DataFrame(list(zip(sequenceLength,percentGC)),columns=['sequenceLength','percentGC'])
-a=ggplot(seqDF, aes(x="sequenceLength"))
-a+geom_histogram()+theme_classic()
+seqDF=pandas.DataFrame(list(zip(sequenceLength,percentGC)),columns=['sequenceLength','percentGC']) #combine lists into dataframe for easier plotting
+a=ggplot(seqDF, aes(x="sequenceLength")) #Create plot of sequence lengths
+a+geom_histogram()+theme_classic() #Plot as histogram
 
-b=ggplot(seqDF, aes(x="percentGC"))
-b+geom_histogram()+theme_classic()
+b=ggplot(seqDF, aes(x="percentGC")) #Create plot of %GC
+b+geom_histogram()+theme_classic() #Plot as histogram
 
-InFile.close()
+InFile.close() #Close file
