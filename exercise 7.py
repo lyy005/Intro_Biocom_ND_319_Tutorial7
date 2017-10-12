@@ -7,6 +7,7 @@
 
 # question 1
 import pandas
+from plotnine import *
 File=open("Lecture11.fasta","r")
 plotData = pandas.DataFrame(columns = ["Sequence Length" , "GC content"])
 
@@ -24,11 +25,13 @@ for line in File:
         plotData = plotData.append(row)
 #GC histogram plot
 a=ggplot(plotData,aes(x="GC content"))
-a+geom_histogram()+theme_classic()        
+aa= a+geom_histogram()+theme_classic()
+print aa
 
 #sequence length histogram plot
 b=ggplot(plotData,aes(x="Sequence Length"))
-b+geom_histogram()+theme_classic()
+bb=b+geom_histogram()+theme_classic()
+print bb
 
 #question2
 
@@ -38,8 +41,8 @@ data=pandas.read_csv("heartrate.txt",sep=",",header=0)
 
 #Here I make the scatter plot showing how running speed and heart rate are related
 plot=ggplot(data,aes(x="Heart rate",y="Running speed"))
-plot+geom_point()+coord_cartesian()+stat_smooth(method="lm")
-
+p=plot+geom_point()+coord_cartesian()+stat_smooth(method="lm")
+print p
 
 #########question 3################
 from plotnine import *
@@ -60,7 +63,7 @@ print p
 #scatterplot
 d= (ggplot(data=dat)
     + aes(y='observations', x='region', fill= 'region')
-    + geom_point(alpha= .01)
+    + geom_point(alpha= .1)
     + theme_classic()
     )
 print d
