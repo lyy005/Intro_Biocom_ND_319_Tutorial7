@@ -51,44 +51,25 @@ histogram2+geom_histogram(binwidth=15,fill='yellow',color='black')+theme_classic
 
 #Question 3
 
-# open data file
-q3north=0
-q3south=0
-q3west=0
-q3east=0
-
-
-for i in range(0,len(q3),1):
-    if q3.region[i]=="north":
-        q3north=q3north+q3.observations[i]
-    elif q3.region[i]=="south":
-        q3south=q3south+q3.observations[i]
-    elif q3.region[i]=="east":
-        q3east=q3east+q3.observations[i]
-    elif q3.region[i]=="west":
-        q3west=q3west+q3.observations[i]
-
-q3north
-q3south
-q3west
-q3east
-
-avgnorth=(sum(q3.region=="north")/len(q3north))
-sum(q3.region=="south")
-sum(q3.region=="east")
-sum(q3.region=="west")
-
-
+#open file and import pandas
 import pandas
 q3=pandas.read_csv("data.txt", sep=",", header=0)
-average=q3.groupby('region')['observations'].mean()
 
-regions=q3.groupby('region')['region']
-seqDF=pandas.DataFrame(list(zip(average)),columns=['regions','observations'] set='\t')
-df=average.to_frame(name=none)
+#group by the region and find the mean of each region
+average=q3.groupby('region')['observations'].mean()
+#print to dataframe
+df=average.to_frame()
+#add the region rows - can find the order if you print the previous variable
+df['region']=["east", "north", "south", "west"]
+
+#making a bar graph with the avg of the corresponding regions
+from plotnine import *
+q3bp=ggplot(df)+theme_classic()+xlab("region")+ylab("observations")
+q3bp+geom_bar(aes(x="region",y="observations"),stat="summary",)
 
 #scatter plot with jitter applied
 from plotnine import *
 q3sp=ggplot(q3,aes(x="region",y="observations"))
 q3sp+geom_jitter()+coord_cartesian()
+
 
