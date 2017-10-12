@@ -53,4 +53,13 @@ means.iloc[2,1]=eMean
 means.iloc[3,1]=wMean
 
 c=ggplot(means, aes(x="region",y="mean")) #Plot means on bar graph
-c+geom_col()
+c+geom_col()+theme_classic()
+
+d=ggplot(data, aes(x="region", y="observations")) #Plot all observations on scatter plot
+d+geom_jitter()+theme_classic()
+
+#Graphs tell different stories - only on the scatter plot does it become apparent that the observations
+#in the south region are two discrete populations, rather than a continuous spread like the others.
+#Additionally, the mean for the West region makes it look as though it has the smallest values, whereas
+#the scatterplot shows that it has both the lowest and the highest values, over a very large spread.
+#The mean barplot is really only an accurate respresentation for the North region.
