@@ -1,5 +1,6 @@
 #Part 1
 import pandas
+from plotnine import *
 
 InFile=open("Lecture11.fasta","r") #Open fasta file as read-only
 
@@ -18,3 +19,9 @@ for line in InFile: #Loop through each line in fasta file
         sequenceLength.append(seqLen) #Append length of individual sequences to list
         percentGC.append(percGC) #Append %GC of individual sequences to list
 
+seqDF=pandas.DataFrame(list(zip(sequenceLength,percentGC)),columns=['sequenceLength','percentGC'])
+a=ggplot(seqDF, aes(x="sequenceLength"))
+a+geom_histogram()+theme_classic()
+
+b=ggplot(seqDF, aes(x="percentGC"))
+b+geom_histogram()+theme_classic()
