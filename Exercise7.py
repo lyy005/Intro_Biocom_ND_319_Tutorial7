@@ -25,3 +25,5 @@ a+geom_histogram()+theme_classic()
 
 b=ggplot(seqDF, aes(x="percentGC"))
 b+geom_histogram()+theme_classic()
+
+InFile.close()
