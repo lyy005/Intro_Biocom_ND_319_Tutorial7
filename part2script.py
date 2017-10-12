@@ -3,7 +3,7 @@ import pandas
 import plotnine
 from plotnine import *
 
-Part2=pandas.read_csv("part2datacopy.txt", sep="",", header=0)
+Part2=pandas.read_csv("part2datacopy.txt", sep=",")
 #print(Part2)
 
 #plotting data in scatterplot with trendline
