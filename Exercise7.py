@@ -27,3 +27,13 @@ b=ggplot(seqDF, aes(x="percentGC")) #Create plot of %GC
 b+geom_histogram()+theme_classic() #Plot as histogram
 
 InFile.close() #Close file
+
+#Part 2
+import numpy
+
+data=pandas.read_csv("data.txt", header=0, sep=",") #Open file as data frame
+
+nMean=numpy.mean(data[data.region=="north"]) #Calculate mean for each direction/population
+eMean=numpy.mean(data[data.region=="east"])
+wMean=numpy.mean(data[data.region=="west"])
+sMean=numpy.mean(data[data.region=="south"])
