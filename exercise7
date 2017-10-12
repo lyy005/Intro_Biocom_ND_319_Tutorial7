@@ -3,7 +3,7 @@
 #load dataset
 import pandas
 InFile=open("Lecture11.fasta","r")
-InFile=close()
+#InFile=close()
 #create lists for storing information about sequences
 sequenceID=[]
 sequenceLength=[]
@@ -34,7 +34,7 @@ for Line in InFile:
 #dataframe of resulting info
 seqDF = pandas.DataFrame(list(zip(sequenceID,sequenceLength,percentGC)),columns=['sequenceID','sequenceLength','percentGC'])
 #to make infile management easier
-InFile=open("Lecture11.fasta","r")
+#InFile=open("Lecture11.fasta","r")
 InFile.close()
 
 #Histogram of sequence lengths
@@ -43,11 +43,12 @@ from plotnine import *
 p=(ggplot(data=seqDF) +
     aes(x="sequenceLength") +
     geom_histogram(binwidth=4))
-
+p
 #Histogram of Percent GC
 g=(ggplot(data=seqDF) +
     aes(x="percentGC") +
     geom_histogram(binwidth=5))
+g
 
 #Question 2
 import numpy
