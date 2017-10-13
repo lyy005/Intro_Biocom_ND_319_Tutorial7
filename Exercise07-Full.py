@@ -42,7 +42,7 @@ from plotnine import *
 data=pandas.read_csv("data.txt")
 
 #Barplot for the population means
-means=ggplot('data')+theme_classic()+xlab("Populations")+ylab("Mean Number of Observations")
+means=ggplot(data)+theme_classic()+xlab("Populations")+ylab("Mean Number of Observations")
 +means+geom_bar(aes(x="factor(region)",y="observations",fill="region"),stat="summary",fun_y=numpy.mean)+ggtitle("Population Means")
 
 #Barplot means calculated for check(not necessary)
