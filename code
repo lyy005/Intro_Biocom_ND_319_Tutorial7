@@ -1,0 +1,10 @@
+import numpy
+import pandas
+from plotnine import *
+
+icecream=pandas.read_csv("icream_sales.txt",sep="\t",header=0)
+icecream.shape
+icecream.head(20)
+
+a=ggplot(icecream,aes(x="temp",y="sales"))+theme_classic()+geom_point()
+a+xlab("Temperature (C)")+ylab("Sales In Dollars")+stat_smooth(method="lm")
