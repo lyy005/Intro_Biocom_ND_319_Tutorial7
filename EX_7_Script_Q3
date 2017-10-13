@@ -1,0 +1,30 @@
+import numpy
+import os
+import matplotlib.pyplot as plt
+from plotnine import *
+os.listdir('.')
+os.chdir('/Users/sampathkumarbalaji/EX_7/Intro_Biocom_ND_319_Tutorial7')
+import pandas
+
+#to parse and read
+data_txt = pandas.read_csv("data.txt")
+directions = ['north','south','east','west']
+
+#create dataframe
+A=numpy.zeros((4,2))
+mean_DF=pandas.DataFrame(A,columns=['region', 'mean_dir'])
+
+#assigning values to data frame elements with mean of 4 regions
+for i in range(0,4) :
+    mean_DF.mean_dir[i] = numpy.mean(data_txt[data_txt.region==directions[i]].observations)
+    mean_DF.region[i] = directions[i]
+
+a=ggplot(mean_DF)+theme_classic()+xlab("region")+ylab("mean_dir")
+a+geom_bar(aes(x="region",y="mean_dir"),stat="summary")
+
+b=ggplot(data, aes(x="region", y="observations")) #Plot all observations on scatter plot
+b+geom_jitter()+theme_classic()
+
+#Bar Graph had mean plotted across the regions which almost had same values (~15). They almost looked the same.
+#But on the scatter plot we north has points centered around 15 while east and west are equally spread and south
+#has a bi-modal distribution.
