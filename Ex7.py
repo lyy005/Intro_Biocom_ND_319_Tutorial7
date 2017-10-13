@@ -61,3 +61,16 @@ cars=pd.read_csv("cars.csv")
 plot3=plotnine.ggplot(cars, plotnine.aes('speed','dist'))
 plot3 + plotnine.geom_point() + plotnine.geom_smooth()
 
+
+#ex 3
+data=pd.read_table("data.txt", delimiter=",")
+
+#ex3 plot 1, barplot of means
+plot4=plotnine.ggplot(data, plotnine.aes('region', 'observations'))
+plot4 + plotnine.geom_bar(stat='summary')
+
+#ex3 plot 2, scatter plot
+plot5=plotnine.ggplot(data, plotnine.aes('region','observations'))
+plot5 + plotnine.geom_jitter()
+
+#the bar plot showing the means leads me to believe the data are all very similar, since the means are all very close. However the scatterplot shows that the distribution of the data in each group is very different.
